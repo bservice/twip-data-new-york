@@ -46,7 +46,7 @@ public class Main {
         sf.close();
         for (int i = 1; i<text.length; i++) {
 
-            int ID = text[i].indexOf(32, 1);
+            int ID = text[i].indexOf(32);
             int Name = text[i].indexOf(32, ID+1);
             int Borough = text[i].indexOf(32, Name+1);
             int bc = text[i].indexOf(32, Borough+1);
@@ -69,10 +69,10 @@ public class Main {
             int avw = text[i].indexOf(32, avr+1);
             int pt = text[i].indexOf(32, avw+1);
             //String ave = text[i].substring(av+1, ab);
-            String fullName = text[i].substring(0, ID);
+            String fullName = text[i].substring(0, Name);
             schoolID.put(fullName,fullName);
-            schoolName.put(fullName, text[i].substring(ID+1, Name));
-            borough.put(fullName, text[i].substring(Name+1, Borough));
+            schoolName.put(fullName, text[i].substring(ID+1, Borough));
+            /*borough.put(fullName, text[i].substring(Name+1, Borough));
             buildingCode.put(fullName, text[i].substring(Borough+1, bc));
             address.put(fullName, text[i].substring(bc+1, ad));
             city.put(fullName, text[i].substring(ad+1, cy));
@@ -87,11 +87,13 @@ public class Main {
             percentWhite.put(fullName, text[i].substring(enr+1, pw));
             percentBlack.put(fullName, text[i].substring(pw+1, pb));
             percentHispanic.put(fullName, text[i].substring(pb+1, ph));
-            percentAsian.put(fullName, text[i].substring(ph+1, pa));
-            avgMath.put(fullName, text[i].substring(pa+1, avm));
-            avgReading.put(fullName, text[i].substring(avm+1, avr));
-            avgWriting.put(fullName, text[i].substring(avr+1, avw));
-            percentTested.put(fullName, text[i].substring(avw+1, pt));
+            percentAsian.put(fullName, text[i].substring(ph+1, pa));*/
+            System.out.println(text[i].substring(star,en));
+
+                avgMath.put(fullName, text[i].substring(avm + 1, avr));
+                avgReading.put(fullName, text[i].substring(avr + 1, avw));
+                avgWriting.put(fullName, text[i].substring(avw + 1, pt));
+                //percentTested.put(fullName, text[i].substring(avw+1, pt));
 
         }
         Scanner record = new Scanner(System.in);
