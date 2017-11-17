@@ -2,12 +2,14 @@ package com.company;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
 
+    private static String[] parts = new String[1000];
     private static Main test = new Main();
     private static Map<String, String> schoolID = new HashMap<>();
     private static Map<String, String> schoolName = new HashMap<>();
@@ -34,6 +36,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+
         Scanner sf = new Scanner(new File("scores.txt"));
         int maxIndx = -1;
         String text[] = new String[436];
@@ -44,11 +47,33 @@ public class Main {
 
         }
         sf.close();
-        for (int i = 2; i<text.length; i++) {
+        for (int i = 1; i<text.length; i++) {
 
-            for (int z: text) {
-
-            }
+            Arrays.fill(parts, "0");
+            parts = text[i].split("/t");
+            String ID = parts[0];
+            schoolID.put(ID,ID);
+            schoolName.put(ID, parts[1]);
+            borough.put(ID, parts[2]);
+            buildingCode.put(ID, parts[3]);
+            address.put(ID, parts[4]);
+            city.put(ID, parts[5]);
+            state.put(ID, parts[6]);
+            zip.put(ID, parts[7]);
+            latitude.put(ID, parts[8]);
+            longitude.put(ID, parts[9]);
+            phoneNumber.put(ID, parts[10]);
+            startTime.put(ID, parts[11]);
+            endTime.put(ID, parts[12]);
+            enrollment.put(ID, parts[13]);
+            percentWhite.put(ID, parts[14]);
+            percentBlack.put(ID, parts[15]);
+            percentHispanic.put(ID, parts[16]);
+            percentAsian.put(ID, parts[17]);
+            avgMath.put(ID, parts[18]);
+            avgReading.put(ID, parts[19]);
+            avgWriting.put(ID, parts[20]);
+            percentTested.put(ID, parts[21]);
             /*int ID = text[i].indexOf(9);
             int Name = text[i].indexOf(9, ID+1);
             int Borough = text[i].indexOf(9, Name+1);
@@ -72,34 +97,6 @@ public class Main {
             int avw = text[i].indexOf(9, avr+1);
             int pt = text[i].lastIndexOf("%");*
             //String ave = text[i].substring(av+1, ab);
-            String fullName = text[i].substring(0, Name);
-            schoolID.put(fullName,fullName);
-            schoolName.put(fullName, text[i].substring(ID+1, Borough));
-            /*borough.put(fullName, text[i].substring(Name+1, Borough));
-            buildingCode.put(fullName, text[i].substring(Borough+1, bc));
-            address.put(fullName, text[i].substring(bc+1, ad));
-            city.put(fullName, text[i].substring(ad+1, cy));
-            state.put(fullName, text[i].substring(cy+1, st));
-            zip.put(fullName, text[i].substring(st+1, zi));
-            latitude.put(fullName, text[i].substring(zi+1, lat));
-            longitude.put(fullName, text[i].substring(lat+1, lon));
-            phoneNumber.put(fullName, text[i].substring(lon+1, pho));
-            startTime.put(fullName, text[i].substring(pho+1, star));
-            endTime.put(fullName, text[i].substring(star+1, en));
-            enrollment.put(fullName, text[i].substring(en+1, enr));
-            percentWhite.put(fullName, text[i].substring(enr+1, pw));
-            percentBlack.put(fullName, text[i].substring(pw+1, pb));
-            percentHispanic.put(fullName, text[i].substring(pb+1, ph));
-            percentAsian.put(fullName, text[i].substring(ph+1, pa));
-
-            if (pt != avw) {
-
-                    avgMath.put(fullName, text[i].substring(avm + 1, avr));
-                    avgReading.put(fullName, text[i].substring(avr + 1, avw));
-                    avgWriting.put(fullName, text[i].substring(avw + 1, pt));
-                    //percentTested.put(fullName, text[i].substring(avw+1, pt));
-
-            }
             System.out.println(text[i].substring(star,en));
             */
         }
