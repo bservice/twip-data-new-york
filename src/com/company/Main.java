@@ -2,7 +2,6 @@ package com.company;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -29,14 +28,14 @@ public class Main {
     private static Map<String, String> percentBlack = new HashMap<>();
     private static Map<String, String> percentHispanic = new HashMap<>();
     private static Map<String, String> percentAsian = new HashMap<>();
-    private static Map<String, String> avgMath = new HashMap<>();
-    private static Map<String, String> avgReading = new HashMap<>();
-    private static Map<String, String> avgWriting = new HashMap<>();
+    private static Map<String, Integer> avgMath = new HashMap<>();
+    private static Map<String, Integer> avgReading = new HashMap<>();
+    private static Map<String, Integer> avgWriting = new HashMap<>();
     private static Map<String, String> percentTested = new HashMap<>();
 
     public static void main(String[] args) throws IOException {
 
-
+        //String[] parts = new String[1000];
         Scanner sf = new Scanner(new File("scores.txt"));
         int maxIndx = -1;
         String text[] = new String[436];
@@ -47,33 +46,34 @@ public class Main {
 
         }
         sf.close();
-        for (int i = 1; i<text.length; i++) {
+        for (int i = 1; i < text.length; i++) {
 
-            Arrays.fill(parts, "0");
-            parts = text[i].split("/t");
-            String ID = parts[0];
-            schoolID.put(ID,ID);
-            schoolName.put(ID, parts[1]);
-            borough.put(ID, parts[2]);
-            buildingCode.put(ID, parts[3]);
-            address.put(ID, parts[4]);
-            city.put(ID, parts[5]);
-            state.put(ID, parts[6]);
-            zip.put(ID, parts[7]);
-            latitude.put(ID, parts[8]);
-            longitude.put(ID, parts[9]);
-            phoneNumber.put(ID, parts[10]);
-            startTime.put(ID, parts[11]);
-            endTime.put(ID, parts[12]);
-            enrollment.put(ID, parts[13]);
-            percentWhite.put(ID, parts[14]);
-            percentBlack.put(ID, parts[15]);
-            percentHispanic.put(ID, parts[16]);
-            percentAsian.put(ID, parts[17]);
-            avgMath.put(ID, parts[18]);
-            avgReading.put(ID, parts[19]);
-            avgWriting.put(ID, parts[20]);
-            percentTested.put(ID, parts[21]);
+            if (parts.length == 21) {
+                parts = text[i].split("\t");
+                String ID = parts[0];
+                schoolID.put(ID, ID);
+                schoolName.put(ID, parts[1]);
+                borough.put(ID, parts[2]);
+                buildingCode.put(ID, parts[3]);
+                address.put(ID, parts[4]);
+                city.put(ID, parts[5]);
+                state.put(ID, parts[6]);
+                zip.put(ID, parts[7]);
+                latitude.put(ID, parts[8]);
+                longitude.put(ID, parts[9]);
+                phoneNumber.put(ID, parts[10]);
+                startTime.put(ID, parts[11]);
+                endTime.put(ID, parts[12]);
+                enrollment.put(ID, parts[13]);
+                percentWhite.put(ID, parts[14]);
+                percentBlack.put(ID, parts[15]);
+                percentHispanic.put(ID, parts[16]);
+                percentAsian.put(ID, parts[17]);
+                avgMath.put(ID, Integer.valueOf(parts[18]));
+                avgReading.put(ID, Integer.valueOf(parts[19]));
+                avgWriting.put(ID, Integer.valueOf(parts[20]));
+                percentTested.put(ID, parts[21]);
+            }
             /*int ID = text[i].indexOf(9);
             int Name = text[i].indexOf(9, ID+1);
             int Borough = text[i].indexOf(9, Name+1);
@@ -114,12 +114,19 @@ public class Main {
 
         }
 
-
     }
+
     private void getSchoolAverage(String schoolID) {
 
-        System.out.println((Integer.valueOf(avgMath.get(schoolID))+Integer.valueOf(avgReading.get(schoolID))+Integer.valueOf(avgWriting.get(schoolID))));
+        if (avgMath.get(schoolID) >= 0) {
+            System.out.println((avgMath.get(schoolID) + avgReading.get(schoolID) + avgWriting.get(schoolID)));
 
+        }
+        else {
+
+            System.out.println("school did not report scores");
+
+        }
     }
 }
 
