@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-
+//declares variables for each data piece
     private static String[] parts = new String[1000];
     private static Main test = new Main();
     private static Map<String, String> schoolID = new HashMap<>();
@@ -100,6 +100,7 @@ public class Main {
             System.out.println(text[i].substring(star,en));
             */
         }
+        //asks user what they want to do
         Scanner record = new Scanner(System.in);
         System.out.println("what would you like to find?");
         System.out.println("Press 0 for the top 3 schools");
@@ -117,7 +118,7 @@ public class Main {
     }
 
     private void getSchoolAverage(String schoolID) {
-
+//this should be adding all 3 scores for the school and dividing by 3, however, it is not working
         if (avgMath.get(schoolID) >= 0) {
             System.out.println((avgMath.get(schoolID) + avgReading.get(schoolID) + avgWriting.get(schoolID)));
 
